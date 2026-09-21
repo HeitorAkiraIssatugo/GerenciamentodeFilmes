@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CineApp{% endblock %}</title>
+    <!-- Tailwind CSS CDN para estilização rápida -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between">
+
+    <!-- Mensagens Flash -->
+    <div class="max-w-md mx-auto mt-4 w-full px-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="p-4 mb-3 rounded-lg text-sm {% if category == 'success' %}bg-emerald-800 text-emerald-100{% elif category == 'danger' %}bg-rose-800 text-rose-100{% else %}bg-sky-800 text-sky-100{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <main class="flex-grow flex items-center justify-center p-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="py-4 text-center text-xs text-slate-500">
+        Gerenciador de Filmes &copy; 2026 - Padrão MVC com Flask
+    </footer>
+</body>
+</html>
