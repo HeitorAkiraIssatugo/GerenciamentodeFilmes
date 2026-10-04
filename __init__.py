@@ -14,7 +14,7 @@ def create_app():
 
     @app.before_request
     def check_auth():
-        public_endpoints = ['auth.login', 'static']
+        public_endpoints = ['auth.login', 'auth.register', 'static']
         if request.endpoint not in public_endpoints and 'user' not in session:
             return redirect(url_for('auth.login'))
 
